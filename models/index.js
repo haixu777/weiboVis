@@ -1,34 +1,50 @@
+var utils = require('../utils/util');
 var mysql = require('../config/mysql');
 var sql = require('./sqlMapping');
 
-var data = [];
-var events = [];
-var account = [];
+var responseList = ['account','events'];
 
 module.exports = {
     queryAll: function(req, res, next) {
-        mysql.one_lib.getConnection(function(err, connection) {
-            connection.query(sql.sinaAccount, function(err, results) {
-
+        mysql.lib_pool.getConnection(function(err, connection) {
+            var data = [];
+            connection.query(sql.sinaAccount_top10, function(err, results) {
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                data.account = results;
+                if(utils.dataPrepared(data, responseList)) res.json({'account': data.account, 'events': data.events});
             });
-            connection.query(sql.events, function(err, results) {
-
+            connection.query(sql.events_top10, function(err, results) {
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                data.events = results;
+                if(utils.dataPrepared(data, responseList)) res.json({'account': data.account, 'events': data.events});
             });
         })
     },
     queryByKeyword: function(req, res, next) {
         mysql.lib_pool.getConnection(function(err, connection) {
+            var data = [];
             connection.query(sql.sinaAccount, req.query.keyword, function(err, results) {
-                if(err) throw(err);
-                account = results;
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                data.account = results;
+                if(utils.dataPrepared(data, responseList)) res.json({'account': data.account, 'events': data.events});
             })
             connection.query(sql.events, req.query.keyword, function(err, results) {
-                if(err) throw(err);
-                events = results;
+                if(err) {
+                    console.log(err);
+                    return;
+                }
+                data.events = results;
+                if(utils.dataPrepared(data, responseList)) res.json({'account': data.account, 'events': data.events});
             })
-            setTimeout(function() {
-                res.json({'account': account, 'events': events});
-            },1000)
         })
     }
 };
