@@ -1,8 +1,8 @@
-function dataPrepared(obj, items) {
+function dataPrepared(obj, items, cb) {
     var result = items.every(function(item) {
         return obj.hasOwnProperty(item);
     })
-    return result;
+    if(result) cb();
 }
 
 exports.dataPrepared = dataPrepared;
