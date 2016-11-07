@@ -7,10 +7,10 @@
 		window.onload = function() {
 			$("#btn").click(function() {
 				$.ajax({
-					url: '/weiboVis/index',
+					url: '/weiboVis/singleChat',
 					type: 'GET',
 					data: {
-						keyword: $('#account').val()
+						weiboId: $('#account').val()
 					},
 					success: function(res) {
 						console.log(res);

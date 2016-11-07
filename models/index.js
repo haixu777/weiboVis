@@ -8,7 +8,7 @@ module.exports = {
     queryAll: function(req, res, next) {
         mysql.lib_pool.getConnection(function(err, connection) {
             data = [];
-            connection.query(sql.sinaAccount_top10, function(err, results) {
+            connection.query(sql.index.sinaAccount_top10, function(err, results) {
                 if(err) {
                     console.log(err);
                     return;
@@ -19,7 +19,7 @@ module.exports = {
                     connection.release();
                 })
             });
-            connection.query(sql.events_top10, function(err, results) {
+            connection.query(sql.index.events_top10, function(err, results) {
                 if(err) {
                     console.log(err);
                     return;
@@ -35,7 +35,7 @@ module.exports = {
     queryByKeyword: function(req, res, next) {
         mysql.lib_pool.getConnection(function(err, connection) {
             data = [];
-            connection.query(sql.sinaAccount, req.query.keyword, function(err, results) {
+            connection.query(sql.index.sinaAccount, req.query.keyword, function(err, results) {
                 if(err) {
                     console.log(err);
                     return;
@@ -46,7 +46,7 @@ module.exports = {
                     connection.release();
                 })
             })
-            connection.query(sql.events, req.query.keyword, function(err, results) {
+            connection.query(sql.index.events, req.query.keyword, function(err, results) {
                 if(err) {
                     console.log(err);
                     return;
