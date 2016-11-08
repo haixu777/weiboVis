@@ -10,7 +10,7 @@ module.exports = {
             data = [];
             connection.query(sql.index.sinaAccount_top10, function(err, results) {
                 if(err) {
-                    console.log(err);
+                    throw err;
                     return;
                 }
                 data.account = results;
@@ -21,7 +21,7 @@ module.exports = {
             });
             connection.query(sql.index.events_top10, function(err, results) {
                 if(err) {
-                    console.log(err);
+                    throw err;
                     return;
                 }
                 data.events = results;
@@ -37,7 +37,7 @@ module.exports = {
             data = [];
             connection.query(sql.index.sinaAccount, req.query.keyword, function(err, results) {
                 if(err) {
-                    console.log(err);
+                    throw err;
                     return;
                 }
                 data.account = results;
@@ -48,7 +48,7 @@ module.exports = {
             })
             connection.query(sql.index.events, req.query.keyword, function(err, results) {
                 if(err) {
-                    console.log(err);
+                    throw err;
                     return;
                 }
                 data.events = results;

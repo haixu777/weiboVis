@@ -8,29 +8,32 @@ module.exports = {
     queryById: function(req, res, next) {
         mysql.lib_pool.getConnection(function(err, connection) {
             data = [];
-            connection.query(sql.singleChat.queryById, [req.query.weiboId], function(err, results) {
+            connection.query(sql.singleChat.queryById, [req.query.id], function(err, results) {
                 if(err) {
-                    console.log(err);
+                    throw err;
                     return;
                 }
-                data.account = results;
-                // utils.dataPrepared(data, responseList, function() {
-                //     res.json({'account': data.account, 'events': data.events});
-                //     connection.release();
-                // })
-                res.json({'info': data.account})
+                data.info = results;
+
+                if(data.info.length) {
+                    queryByAccountId(data.info[0].accountId);
+                } else {
+                    res.json({'info': data.info});
+                    connection.release();
+                }
             })
-            // connection.query(sql.events, req.query.keyword, function(err, results) {
-            //     if(err) {
-            //         console.log(err);
-            //         return;
-            //     }
-            //     data.events = results;
-            //     utils.dataPrepared(data, responseList, function() {
-            //         res.json({'account': data.account, 'events': data.events});
-            //         connection.release();
-            //     })
-            // })
+            function queryByAccountId(id) {
+                console.log(id);
+                connection.query(sql.singleChat.queryByAccountId, [id], function(err, results) {
+                    if(err) {
+                        throw err;
+                        return;
+                    }
+                    data.account = results;
+                    res.json({'info': data.info, 'account': [{'weiName': null, 'info': data.account}]})
+                    connection.release();
+                })
+            }
         })
     }
 };

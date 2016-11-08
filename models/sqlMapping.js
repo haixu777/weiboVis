@@ -6,7 +6,8 @@ var sql = {
         sinaAccount_top10: 'SELECT accountId,screenName,followersCount FROM sinaAccount ORDER BY followersCount DESC LIMIT 10'
     },
     singleChat: {
-        queryById: 'SELECT * FROM weibo WHERE weiboId =?'
+        queryById: 'SELECT accountId,content,url,postTime FROM weibo WHERE weiboId =?',
+        queryByAccountId: 'SELECT photoUrl,screenName,fetchTime,location,harmLevel FROM sinaAccount WHERE accountId =?'
     }
 }
 
