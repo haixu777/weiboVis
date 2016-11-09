@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+    console.log(__dirname + __filename);
+    fs.stat('./public/socialNetwork.gexf',function(err, stat){
+        if(stat&&stat.isFile()){
+            console.log('file found');
+            res.send('True');
+        }
+    
+        else{
+            console.log('file not found');
+            res.send('False');
+        }
+    });
 });
 
 module.exports = router;
