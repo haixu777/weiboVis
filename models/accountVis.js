@@ -62,11 +62,15 @@ module.exports = {
                 //     connection.release();
                 // })
 
-                var accountId = results[0].accountId;
-                fetchTimeDataFromServer(accountId);
-                fetchWeiboDataFromServer(accountId);
-                fetchLinkDataFromServer(accountId);
-                fetchRepostDataFromServer(accountId);
+                if(results.length > 0) {
+                    fetchTimeDataFromServer(results[0].accountId);
+                    fetchWeiboDataFromServer(results[0].accountId);
+                    fetchLinkDataFromServer(results[0].accountId);
+                    fetchRepostDataFromServer(results[0].accountId);
+                } else {
+                    res.json({'info': '无此用户信息'})
+                }
+
             });
 
             //time
