@@ -115,7 +115,7 @@ module.exports = {
                     var weibolist =[];
                     var nodes = [];
                     for(var i = 0; i < results.length; i++){
-                        wordcloud[i] = {word: results[i].sample_keyword, id: results[i].keywordId, value: null};
+                        wordcloud[i] = {name: results[i].sample_keyword, id: results[i].keywordId, value: null};
                         weibolist[i] = {name: results[i].content, id: results[i].weiboId};
                         nodes[i] = {}
                     }
@@ -167,6 +167,8 @@ module.exports = {
                         }
 
                     }
+
+                    fansnodes[m] = {name: accountId, value: null, url: "http://weibo.com/u/" + accountId};
 
                     // console.log(wordcloud);
                     acc.link = {
