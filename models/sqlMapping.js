@@ -1,9 +1,11 @@
 var sql = {
     index: {
-        events: 'SELECT id,first_name FROM t_subject WHERE first_name regexp?',
-        sinaAccount: 'SELECT accountId,screenName,description FROM sinaAccount WHERE screenName regexp?',
-        events_top10: 'SELECT id,first_name FROM t_subject ORDER BY id DESC LIMIT 10',
-        sinaAccount_top10: 'SELECT accountId,screenName,followersCount FROM sinaAccount ORDER BY followersCount DESC LIMIT 10'
+        queryWeiboTop10: 'SELECT weiboId AS Id, content FROM weibo ORDER BY repostNum DESC LIMIT 10',
+        queryEventTop10: 'SELECT id AS Id, sample_keyword AS content FROM sample_keywords ORDER BY id DESC LIMIT 10',
+        queryAccountTop10: 'SELECT accountId AS Id, screenName AS content FROM sinaAccount ORDER BY followersCount DESC LIMIT 10',
+        queryWeiboByKeyword: 'SELECT weiboId AS Id, content FROM weibo WHERE content regexp?',
+        queryEventByKeyword: 'SELECT id AS Id, sample_keyword AS content FROM sample_keywords WHERE sample_keyword regexp?',
+        queryAccountByKeyword: 'SELECT accountId AS Id, screenName AS content FROM sinaAccount WHERE screenName regexp?'
     },
     singleChat: {
         queryById: 'SELECT accountId,content,url,postTime FROM weibo WHERE weiboId =?',
