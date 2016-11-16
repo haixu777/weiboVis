@@ -115,7 +115,7 @@ module.exports = {
                     var weibolist =[];
                     var nodes = [];
                     for(var i = 0; i < results.length; i++){
-                        wordcloud[i] = {name: results[i].sample_keyword, id: results[i].keywordId, value: null};
+                        wordcloud[i] = {name: results[i].sample_keyword, id: results[i].keywordId, value: results[i].wval};
                         weibolist[i] = {name: results[i].content, id: results[i].weiboId};
                         nodes[i] = {}
                     }
