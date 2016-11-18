@@ -168,7 +168,7 @@ module.exports = {
 
                     }
 
-                    fansnodes[m] = {name: accountId, value: null, url: "http://weibo.com/u/" + accountId, category: 0};
+                    fansnodes[m] = {name: req.query.keyword, id: accountId, value: null, url: "http://weibo.com/u/" + accountId, category: 0};
 
                     // console.log(wordcloud);
                     acc.link = {
