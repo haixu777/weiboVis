@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>微博可视化平台</title>
+
+<link href="css/main.css" rel="stylesheet" type="text/css"/>
+<link href="css/index.css" rel="stylesheet" type="text/css"/>
+
+<script src=" js/sigma/sigma.min.js"></script>
+<script src=" js/sigma/plugins/sigma.parsers.gexf.min.js"></script>
+<script src=" js/sigma/plugins/sigma.plugins.neighborhoods.min.js"></script>
+
+<script src="js/jquery.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="title-container">
+			<div class="float-right margin-right">
+				<div id="linktoindex" class="word-container word-focus">首 页</div>
+				<div id="linktonetwork" class="word-container">社交网络</div>
+				<!--<div id="linktoaccount" class="word-container">微博账户</div>
+				<div id="linktoweibo" class="word-container">单条微博</div>
+				<div id="linktoevent" class="word-container">微博事件</div>-->
+			</div>
+		</div>
+		
+		<div class="image-container blue">
+			<div id="index_network" class="map-container">
+
+			</div>
+		</div>
+		
+		<div class="select-container">
+			<div class="selectbox-container">
+				<input id="index_selectbox" class="selectbox"></input>
+				<div id="index_select_button" class="button-lagre float-left"> 搜 索 </div>
+			</div>
+		</div>
+		
+		<!--悬浮DIV-->
+		<div class="float-div1">
+			<div class="div1-container div-shadow">
+				<div class="div-title">热 门 微 博</div>
+				<div id="hotweibo" class="div-content"></div>
+			</div>
+			<div class="div1-bg div-shadow"></div>
+		</div>
+		<div class="float-div2">
+			<div class="div2-container div-shadow">
+				<div class="div-title">微 博 账 户</div>
+				<div id="account" class="div-content"></div>
+			</div>
+			<div class="div2-bg div-shadow"></div>
+		</div>
+		<div class="float-div3">
+			<div class="div3-container div-shadow">
+				<div class="div-title">微 博 事 件</div>
+				<div id="hotevent" class="div-content"></div>
+			</div>
+			<div class="div3-bg div-shadow"></div>
+		</div>
+	</div>
+	
+	<script src="js/url.js"></script>
+	<script src="js/index.js"></script>
+</body>
+</html>
