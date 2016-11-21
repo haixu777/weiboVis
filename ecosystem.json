@@ -1,0 +1,13 @@
+{
+  "name"   : "weiboVis", // 应用名称
+  "script" : "./bin/www", // 实际启动脚本
+  "cwd"    : "./",
+  "ignore_watch": [
+    "node_modules",
+    "pm2/logs",
+    "public"
+  ],
+  "watch"  : true,
+  "error_file" : "./pm2/logs/app-err.log",
+  "out_file"   : "./pm2/logs/app-out.log" 
+}
