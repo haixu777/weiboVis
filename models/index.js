@@ -4,6 +4,7 @@ var sql = require('./sqlMapping');
 
 var data = [];
 var dataList = ['weibo','event','account'];
+var dataTop10List = ['weibo', 'event', 'account', 'keyword'];
 module.exports = {
     queryAll: function(req, res, next) {
         data = [];
@@ -15,8 +16,8 @@ module.exports = {
                     return;
                 }
                 data.weibo = results;
-                utils.dataPrepared(data, dataList, function() {
-                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account})
+                utils.dataPrepared(data, dataTop10List, function() {
+                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account, 'keyword': data.keyword})
                     connection.release();
                 })
             })
@@ -28,8 +29,8 @@ module.exports = {
                     return;
                 }
                 data.event = results;
-                utils.dataPrepared(data, dataList, function() {
-                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account})
+                utils.dataPrepared(data, dataTop10List, function() {
+                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account, 'keyword': data.keyword})
                     connection.release();
                 })
             })
@@ -41,8 +42,21 @@ module.exports = {
                     return;
                 }
                 data.account = results;
-                utils.dataPrepared(data, dataList, function() {
-                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account})
+                utils.dataPrepared(data, dataTop10List, function() {
+                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account, 'keyword': data.keyword})
+                    connection.release();
+                })
+            })
+
+            // keyword
+            connection.query(sql.index.queryKeywordTop10, [], function(err, results) {
+                if(err) {
+                    throw err;
+                    return;
+                }
+                data.keyword = results;
+                utils.dataPrepared(data, dataTop10List, function() {
+                    res.json({'weibo': data.weibo, 'event': data.event, 'account': data.account, 'keyword': data.keyword})
                     connection.release();
                 })
             })

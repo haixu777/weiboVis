@@ -110,7 +110,6 @@ module.exports = {
                         console.log(err);
                         return;
                     }
-                    // console.log(results);
                     var wordcloud = [];
                     var weibolist =[];
                     var nodes = [];
