@@ -1,0 +1,16 @@
+var express = require('express');
+var exec = require('child_process').exec;
+var id = 2076340027;
+/* GET home page. */
+    var cmdStr = 'python tree.py ' + id; 
+//    var cmdStr = 'python tree.py 2076340027';
+    exec(cmdStr, function(err, stdout, stderr) {
+        if(err) {
+            console.log('get json error!');
+        } else {
+          console.log(stdout);
+                   var astr = stdout.split('\r\n').join('');//delete the \r\n
+          //console.log(astr);
+        }
+    })
+

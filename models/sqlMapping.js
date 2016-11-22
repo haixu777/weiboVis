@@ -1,8 +1,9 @@
 var sql = {
     index: {
-        queryWeiboTop10: 'SELECT weiboId AS Id, content FROM weibo ORDER BY repostNum DESC LIMIT 10',
-        queryEventTop10: 'SELECT id AS Id, sample_keyword AS content FROM sample_keywords ORDER BY id DESC LIMIT 10',
-        queryAccountTop10: 'SELECT accountId AS Id, screenName AS content FROM sinaAccount ORDER BY followersCount DESC LIMIT 10',
+        queryWeiboTop10: 'SELECT weiboId AS Id, content FROM weibo WHERE source=2 OR source=3 ORDER BY repostNum DESC LIMIT 10',
+        queryEventTop10: 'SELECT id AS Id, first_name AS content FROM t_subject ORDER BY id DESC LIMIT 10',
+        queryAccountTop10: 'SELECT accountId AS Id, screenName AS content FROM sinaAccount ORDER BY harmScore DESC LIMIT 10',
+        queryKeywordTop10: 'SELECT id AS Id, sample_keyword AS content FROM sample_keywords ORDER BY id DESC LIMIT 10',
         queryWeiboByKeyword: 'SELECT weiboId AS Id, content FROM weibo WHERE content regexp?',
         queryEventByKeyword: 'SELECT id AS Id, sample_keyword AS content FROM sample_keywords WHERE sample_keyword regexp?',
         queryAccountByKeyword: 'SELECT accountId AS Id, screenName AS content FROM sinaAccount WHERE screenName regexp?'
