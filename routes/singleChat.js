@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var singleChat = require('../../models/singleChat');
 var exec = require('child_process').exec;
+var singleChat = require('../models/singleChat');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

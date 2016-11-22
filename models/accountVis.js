@@ -156,19 +156,19 @@ module.exports = {
                     var n = 0;
                     for(var i = 0; i < results.length; i++){
                         if (results[i].followedAccountId == accountId) {
-                            fansnodes[m] = {name: results[i].followerAccountId, value: null, url: "http://weibo.com/u/"+results[i].followerAccountId};
-                            fanslinks[m] = {source: results[i].followedAccountId, target: results[i].followerAccountId, weight: null};
+                            fansnodes[m] = {name: results[i].followerName, id: results[i].followerAccountId, value: null, url: "http://weibo.com/u/"+results[i].followerAccountId, category: 1};
+                            fanslinks[m] = {source: results[i].followedName?results[i].followedName:results[i].followedAccountId, target: results[i].followerName?results[i].followerName:results[i].followerAccountId, weight: null};
                             m+=1;
                         }
                         if (results[i].followerAccountId == accountId) {
-                            frienodes[n] = {name: results[i].followedAccountId, value: null, url: "http://weibo.com/u/"+results[i].followedAccountId};
-                            frielinks[n] = {source: results[i].followerAccountId, target: results[i].followedAccountId, weight: null};
+                            frienodes[n] = {name: results[i].followedName, id: results[i].followedAccountId, value: null, url: "http://weibo.com/u/"+results[i].followedAccountId, category: 1};
+                            frielinks[n] = {source: results[i].followerName?results[i].followerName:results[i].followerAccountId, target: results[i].followedName?results[i].followedName:results[i].followedAccountId, weight: null};
                             n+=1;
                         }
 
                     }
 
-                    fansnodes[m] = {name: accountId, value: null, url: "http://weibo.com/u/" + accountId};
+                    fansnodes[m] = {name: req.query.keyword, id: accountId, value: null, url: "http://weibo.com/u/" + accountId, category: 0};
 
                     // console.log(wordcloud);
                     acc.link = {

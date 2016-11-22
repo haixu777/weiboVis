@@ -4,15 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
 // 路由路径配置
-var index = require('./routes/weiboVis/index');
-var accountVis = require('./routes/weiboVis/accountVis');
-var singleChat = require('./routes/weiboVis/singleChat');
-var socialNetwork = require('./routes/weiboVis/socialNetwork');
-var weiboEvent = require('./routes/weiboVis/weiboEvent');
+var index = require('./routes/index');
+var accountVis = require('./routes/accountVis');
+var singleChat = require('./routes/singleChat');
+var socialNetwork = require('./routes/socialNetwork');
+var weiboEvent = require('./routes/weiboEvent');
 
 var app = express();
 
@@ -26,10 +25,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors({origin: 'http://127.0.0.1:3000'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 // 路由配置
 app.use('/weiboVis/index', index);
 app.use('/weiboVis/accountVis', accountVis);
@@ -43,6 +42,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handlers
 

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var index = require('../../models/accountVis');
+var index = require('../models/accountVis');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
