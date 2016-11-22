@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var singleChat = require('../models/singleChat');
 
-/* GET users listing. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
-    // res.send('hi')
-    res.json({'name': 'roy'});
+    singleChat.queryById(req, res, next)
 });
 
 module.exports = router;
