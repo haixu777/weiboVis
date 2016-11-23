@@ -14,10 +14,12 @@ var sql = {
     },
     accountVis: {
         queryInfoByKeyword: 'SELECT * FROM sinaAccount WHERE screenName =?',
-        queryTimeByAccountId: 'SELECT count(*) as weiboSum, sum(commentNum) as commentSum FROM weibo WHERE accountId =? and postTime>',
+        queryTimeByAccountId: 'SELECT DATE_FORMAT(postTime,"%k") posthour, isRepost, count(weiboId) as weiboNum, weiboId, content from weibo where accountId =? GROUP BY posthour,isRepost ORDER BY field(posthour,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24)',
         queryWeiboByAccountId: 'select weibo.keywordId,weibo.subjectId,sample_keywords.sample_keyword,weibo.content, weibo.weiboId, count(weibo.keywordId) as wval from weibo inner join sample_keywords on weibo.keywordId = sample_keywords.id WHERE weibo.accountId =? group by keywordId',
         queryLinkByAccountId: 'SELECT followedAccountId, followedName, followerAccountId, followerName from followrelation where followerAccountId = ? or followedAccountId = ?',
-        queryRepostByAccountId: 'select originalAccountId,repostAccountId from repost where originalAccountId = ? or repostAccountId = ?'
+        queryRepostByAccountId: 'select originalAccountId,repostAccountId from repost where originalAccountId = ? or repostAccountId = ?',
+        queryCommentByAccountId: 'select originalAccountId,commentAccountId from comment where  originalAccountId = ? or commentAccountId = ?',
+        queryLikesnumByAccountId: 'select originalAccountId,agreedAccountId from likesnum where  originalAccountId = ? or agreedAccountId = ?'
     }
 }
 
