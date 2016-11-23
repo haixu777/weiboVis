@@ -17,7 +17,7 @@ var sql = {
         queryTimeByAccountId: 'SELECT count(*) as weiboSum, sum(commentNum) as commentSum FROM weibo WHERE accountId =? and postTime>',
         queryWeiboByAccountId: 'select weibo.keywordId,weibo.subjectId,sample_keywords.sample_keyword,weibo.content, weibo.weiboId, count(weibo.keywordId) as wval from weibo inner join sample_keywords on weibo.keywordId = sample_keywords.id WHERE weibo.accountId =? group by keywordId',
         queryLinkByAccountId: 'SELECT followedAccountId, followedName, followerAccountId, followerName from followrelation where followerAccountId = ? or followedAccountId = ?',
-        queryRepostByAccountId: 'select originalAccountId,repostAccountId from repost where originalAccountId not in (select followedAccountId from followrelation) and originalAccountId = ? or repostAccountId = ?'
+        queryRepostByAccountId: 'select originalAccountId,repostAccountId from repost where originalAccountId = ? or repostAccountId = ?'
     }
 }
 

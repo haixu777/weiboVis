@@ -201,7 +201,6 @@ module.exports = {
                         console.log(err);
                         return;
                     }
-                    // console.log(results);
                     var fansnodes = [];
                     var fanslinks = [];
                     var frienodes = [];
