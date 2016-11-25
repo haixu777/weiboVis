@@ -71,6 +71,7 @@ module.exports = {
 
 
                 res.json(data);
+		connection.release();
             })
         });
     }
