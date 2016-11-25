@@ -5,7 +5,7 @@ module.exports = {
     query: function(req, res, next) {
         mysql.lib_pool.getConnection(function(err, connection) {
             connection.query(sql.weiboEvent.queryDataByEventid, [req.query.eventId, req.query.eventId, req.query.eventId], function(err, results) {
-                let data = {
+                var data = {
                     "Info": [],
                     "Account": [],
                     "Keyword": [],
@@ -16,7 +16,7 @@ module.exports = {
                 data.weiboNum.length = 30;
 
 
-                for(let i=0,len=results[0].length; i<len; i++) {
+                for(var i=0,len=results[0].length; i<len; i++) {
                     // Info
                     if(i==0) {
                         data.Info.push({
@@ -51,9 +51,9 @@ module.exports = {
                 });
 
                 // PeopleNum & WeiboNum
-                let date_now = (new Date()).getDate();
-                for(let i=0,len=data.PeopleNum.length; i<len; i++) {
-                    for(let j=0; j<results[2].length; j++) {
+                var date_now = (new Date()).getDate();
+                for(var i=0,len=data.PeopleNum.length; i<len; i++) {
+                    for(var j=0; j<results[2].length; j++) {
                         if((date_now-i-1+30)%30 == results[2][j].Date) {
                             data.PeopleNum[i] = { // PeopleNum
                                 "date": results[2][j].Date,
