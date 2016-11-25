@@ -20,6 +20,9 @@ var sql = {
         queryRepostByAccountId: 'select originalAccountId,repostAccountId from repost where originalAccountId = ? or repostAccountId = ?',
         queryCommentByAccountId: 'select originalAccountId,commentAccountId from comment where  originalAccountId = ? or commentAccountId = ?',
         queryLikesnumByAccountId: 'select originalAccountId,agreedAccountId from likesnum where  originalAccountId = ? or agreedAccountId = ?'
+    },
+    weiboEvent: {
+        queryDataByEventid: 'SELECT weibo.content AS Detail,weibo.postTime AS Time,sinaAccount.screenName AS People,weibo.accountId,weibo.weiboId AS Link,sinaAccount.harmScore FROM weibo INNER JOIN sinaAccount ON weibo.accountId=sinaAccount.accountId AND weibo.subjectId=? ORDER BY weibo.postTime ASC LIMIT 10 ;SELECT sample_keyword AS Word,id AS Id FROM sample_keywords WHERE sample_topicsID=?;SELECT DATE_FORMAT(postTime,"%d") Date, likesNum,COUNT(accountId) AS ReleaseNum,SUM(commentNum) AS CommentNum, SUM(repostNum) AS RepostNum FROM weibo WHERE postTime BETWEEN (CURRENT_DATE() - INTERVAL 1 MONTH) AND CURRENT_DATE() AND subjectId=? GROUP BY Date ORDER BY postTime DESC;'
     }
 }
 
